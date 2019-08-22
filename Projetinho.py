@@ -3,9 +3,6 @@ nome = ' '
 usuario = ' '
 senha1 = ' '
 def projeto():
-    '''
-        projetinho
-                    '''
     from os import system as st
     st('cls')
     
