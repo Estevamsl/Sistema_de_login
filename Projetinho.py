@@ -50,3 +50,4 @@ def projeto():
             if resposta in 'Nn':
                 break
     continuar()
+projeto()
