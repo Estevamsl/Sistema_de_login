@@ -50,8 +50,8 @@ def projeto():
                 print('ERRO!!!')
             else:
                 print('Conta criada com sucesso!')
-            # if criar in 'Nn':
-            #     break
+            if criar in 'Nn':
+                break
     def login (n, s):
         global nome
         global senha
