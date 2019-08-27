@@ -1,0 +1,280 @@
+from random import choice
+from os import system as st
+from time import sleep as sp
+senha = senha1 = senha01 = senha02 = acesso = 0
+nome = ' '
+usuario = ' '
+criar = ' '
+login = ' '
+email = ' '
+idade = 0
+link = ''
+#-------#
+# Class #
+#-------#
+def converte_numero(valor):
+    try:
+        valor = int(valor)
+        return valor
+    except (ValueError, TypeError):
+        try:
+            valor = float(valor)
+            return valor
+        except (ValueError, TypeError):
+            pass
+            try:
+                valor = str(valor)
+                return valor
+            except (ValueError, TypeError):
+                pass
+                try:
+                    valor = bool(valor)
+                    return valor
+                except (ValueError, TypeError):
+                    pass
+
+# n2 = converte_numero(input('Digite o segundo número: '))
+# if (n1 and n2) is not None:
+
+
+class gerador():
+    #---------#
+    # FUNÇÕES #
+    #---------#
+    def gerador_senha(tamanho):
+        caracteres = "0123456789abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%&*()_+}{`^?;:>/-+.,"
+        senha = ""
+        for i in range(tamanho):
+            senha += choice(caracteres)
+        return senha
+    def pergunta_arquivo(resposta):
+        global link
+        while resposta != "Ss" and resposta != "nN" and resposta != "não":
+            resposta = input("Deseja salvar em um arquivo? sim/não: ")
+        if resposta == "s":
+            nome_do_arquivo = input("Nome do arquivo: ")
+            arquivo = open("{}.txt".format(nome_do_arquivo), "a") # Cria um atquivo no formato de escrita
+            arquivo.write("NOME DE USUÁRIO: {}\n".format(nome)) # Escreve no arquivo
+            arquivo.write("SENHA: {}\n".format(senha)) # Escreve no arquivo
+            arquivo.write("LINK: {}".format(link)) # Escreve no arquivo
+            arquivo.close() # Fecha o arquivo
+            sair = input("Deseja sair? sim/não: ")
+            while sair == "não" or sair == "nao":
+                sair = input("Deseja sair? sim/não: ")
+        elif resposta == "não" or resposta == "nao":
+            print()
+            print()
+            print("+--------------------------")
+            print("|Nome de Usuário: {}".format(nome))
+            print("|Senha: {}".format(senha))
+            print("|Link: {}".format(link))
+            print("+--------------------------")
+            print()
+            sair = input("Deseja sair? sim/não: ")
+            while sair == "não" or sair == "nao" or sair == 'n' or sair == 'N' or sair == 'Nao' or sair == 'NAO' or sair == 'NÃO':
+                sair = input("Deseja sair? sim/não: ")
+    def pergunta_link(resposta):
+        global link
+        link = ""
+        while resposta != "sim" and resposta != "não" and resposta != "nao":
+            resposta = input("Quer digitar o link do site? sim/não: ")
+        if resposta == "sim":
+            link = input("Digite o link do site: ") 
+        return resposta, link # retorna o valor de duas variaveis
+
+def projeto():
+    '''
+        projetinho, está dando certo
+                    '''
+    st('cls')
+
+    def qtd_acesso():
+        global acesso
+        acesso += 1
+    #     print(f'Foi {acesso} acessos')
+
+    def cadastro():
+        # while True:
+        while True:
+            try:
+                global criar
+                while True:
+                    try:
+                        criar = str(input('Deseja criar uma nova conta [S/N]: \033[33m')).strip().title()
+                        print('\033[m', end='')
+                        if criar:
+                            break
+                    except:
+                        criar = str(input('\033[31mERRO!!! Digite novamente, para continuar [S/N]:\033[m \033[31m')).strip().title()
+                        print('\033[m', end='')
+                st('cls')
+                if criar in 'Ss':
+                    while True:
+                        qtd_acesso()
+                        try:
+                            global login
+                            login = str(input('Digite um nome de usuário: \033[33m')).lower()
+                            print('\033[m', end='')
+                            st('cls')
+                            if login != usuario:
+                                break
+                        except:
+                            print('ERRO!!! Usunetflix://rio existente, tente outro')
+                    global email
+                    global senha01
+                    global senha02
+                    while True:
+                        try:
+                            global idade
+                            idade = int(input('Digite a sua idade: \033[33m'))
+                            print('\033[m', end='')
+                            st('cls')
+                            # if not idade.isnumeric() or idade.isspace():
+                            if idade > 17:
+                                break
+                                # idade = int(idade)
+                        except:
+                            print('Favor usar uma idade maior ou igual a 18 anos')
+                        # except (TypeError, ValueError):
+                        #     print('Digite uma idade inteira')
+                        else:
+                            print('\033[31mFavor usar uma idade maior ou igual a 18 anos\033[m')
+                    email = converte_numero(input('Digite o seu melhor email: \033[33m'))
+                    # email = str(input('Digite o seu melhor email: \033[33m'))
+                    print('\033[m', end='')
+                    def menu():
+                        print('''[1] criar uma senha: 
+[2] gerar senha: ''')
+                    while True:
+                        try:
+                            menu()
+                            opcao = int(input('Escolha sua opção: \033[33m'))
+                            print('\033[m', end='')
+                            st('cls')
+                            if opcao > 0:
+                                break
+                        except (ValueError, TypeError):
+                            print('Erro, digite uma opção válida')
+                            menu()
+                            sp(0.7)
+                            st('cls')
+                            continue
+                        else:
+                            print('Nenhum erro')
+                    st('cls')
+                    if opcao == 1:
+                        senha01 = converte_numero(input('Digite uma senha de números: \033[7;30m'))
+                        # senha01 = int(input('Digite uma senha de números: \033[7;30m'))
+                        print('\033[m', end='')
+                        while True:
+                            try:
+                                senha02 = converte_numero(input('Digite uma senha de números: \033[7;30m'))
+                                print('\033[m', end='')
+                                sp(1)
+                                st('cls')
+                                print('Conta criada')
+                                # st('cls')
+                                if senha02 == senha01:
+                                    break
+                            except:
+                                print('ERRO, Digite uma senha igual a senha anterior')
+                                st('cls')
+                        if (((senha01 == senha02) != senha1) and (login != usuario)):
+                            break
+                        # print('Conta criada com sucesso!')
+                    elif opcao == 2:
+                        def MENU():
+                            #--------------------#
+                            # CORPO DO DOCUMENTO #
+                            #--------------------#
+                            print()
+                            print("-------------------------")
+                            print("GERADOR DE SENHAS PASSRAP")
+                            print("-------------------------")
+                            print("Info: Este programa irá gerar uma senha para ser utilizada em cadastros e contas!")
+                            print()
+                        MENU()
+                        while True:
+                            nome1 = input("Digite o nome de usuário: \033[33m")
+                            print('\033[m', end='')
+                            st('cls')
+                            MENU()
+                            if nome1 != usuario:
+                                break
+
+                        print('\033[m', end='')
+                        quantidade = int(input("Digite a quantidade de caracteres que deseja ter na senha: "))
+                        pergunta_link = input("Quer digitar o link do site? sim/não: ")
+                        pergunta_link, link = gerador.pergunta_link(pergunta_link) # usa duas variaveis para salvar os dois valores retornados pelo return da função
+                        #-------------------#
+                        # GERADOR DE SENHAS #
+                        #-------------------#
+                        senha03 = gerador.gerador_senha(quantidade)
+                        print("SUA SENHA É: {}".format(senha))
+                        print()
+                        pergunta = input("Deseja salvar em um arquivo? sim/não: \033[33m")
+                        print('\033[m', end='')
+                        pergunta = gerador.pergunta_arquivo(pergunta)
+            except:
+                pass
+                # print('ERRO!!!')
+            # else:
+            #     print('Conta criada com sucesso!')
+            print('Conta criada com sucesso!')
+            if criar in 'Nn':
+                break
+            
+    def login (n, s):
+        global nome
+        global senha
+        sistema_banco_de_dados(usuario, senha1)
+        while True:
+            try:
+                nome = converte_numero(input('Nome: \033[33m'))
+                # nome = str(input('Nome: \033[33m'))
+                print('\033[m', end='')
+                if nome:
+                    break
+            except:
+                print('ERRO!!!')
+        while True:
+            try:
+                # if senha.isdigit()
+                senha = converte_numero(input('Senha: \033[7;30m'))
+                # senha = str(input('Senha: \033[7;30m')).strip().capitalize()
+                print('\033[m', end='')
+                st('cls')
+                if senha:
+                    break
+            except:
+                print('ERRO!!!')
+        if nome == usuario and senha == senha1:
+            print('Logado')
+        else:
+            print('Usuário ou senha inválido')
+            cadastro()
+
+    def sistema_banco_de_dados (u, s):
+        global usuario
+        global senha1
+        usuario = converte_numero('estevam@sl_2019')
+        # usuario = 'estevam@sl_2019'
+        # senha1 =  'Respira123'
+        senha1 = converte_numero('Respira123')
+
+    def continuar ():
+        while True:
+            login(usuario, senha1)
+            resposta = ' '
+            resposta = str(input('Deseja continuar [S/N]: \033[33m')).strip().title()
+            print('\033[m', end='')
+            st('cls')
+            while resposta not in 'SsNn':
+                resposta = str(input('\033[31mERRO!!! Digite novamente, para continuar [S/N]:\033[m \033[31m')).strip().title()
+                print('\033[m', end='')
+                st('cls')
+            if resposta in 'Nn':
+                break
+    continuar()
+    # print(f'Foi {qtd_acesso} contas criadas')
+projeto()
