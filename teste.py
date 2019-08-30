@@ -1,17 +1,47 @@
 from random import choice
 from os import system as st
 from time import sleep as sp
-senha = senha1 = senha01 = senha02 = acesso = 0
+senha = senha1 = senha01 = senha02 = acesso = conta_criada = idade = contador = 0
 nome = ' '
 usuario = ' '
 criar = ' '
 login = ' '
 email = ' '
-idade = 0
 link = ''
-#-------#
-# Class #
-#-------#
+cpf = ''
+# novo_cpf = ''
+def CPF(cpf):
+    # while True:
+    # global novo_cpf
+    # cpf = str(input('Digite o seu cpf'))
+    novo_cpf = cpf[:-2]
+    total = 0
+    reverso = 10
+    
+    for c in range(19):
+        if c > 8:
+            c -= 9
+        total += int(novo_cpf[c]) * reverso
+
+        reverso -= 1
+        if reverso < 2:
+            reverso = 11
+            d = 11 - (total % 11)
+
+            if d > 9:
+                d = 0
+            total = 0
+            novo_cpf += str(d)
+    while True:
+        try:
+            if cpf == novo_cpf:
+                print(f'CPF {cpf} válido')
+                break
+        except:
+            print(f'CPF {cpf} inválido')
+            continue
+        # return CPF() 
+        
 def converte_numero(valor):
     try:
         valor = int(valor)
@@ -32,11 +62,9 @@ def converte_numero(valor):
                     return valor
                 except (ValueError, TypeError):
                     pass
-
-# n2 = converte_numero(input('Digite o segundo número: '))
-# if (n1 and n2) is not None:
-
-
+#-------#
+# Class #
+#-------#
 class gerador():
     #---------#
     # FUNÇÕES #
@@ -88,12 +116,7 @@ def projeto():
                     '''
     st('cls')
 
-    def qtd_acesso():
-        global acesso
-        acesso += 1
-    #     print(f'Foi {acesso} acessos')
-
-    def cadastro():
+    def cadastro(): # função para cadastrar o usuário
         # while True:
         while True:
             try:
@@ -110,19 +133,27 @@ def projeto():
                 st('cls')
                 if criar in 'Ss':
                     while True:
-                        qtd_acesso()
+                        global conta_criada
+                        
                         try:
                             global login
+                            print('Digite um nome de usuário diferente do já criado e maior que 6 caracteres')
                             login = str(input('Digite um nome de usuário: \033[33m')).lower()
                             print('\033[m', end='')
                             st('cls')
-                            if login != usuario:
+                            if login != usuario and (len(login) > 6):
                                 break
                         except:
                             print('ERRO!!! Usunetflix://rio existente, tente outro')
                     global email
                     global senha01
                     global senha02
+                    
+                    cpf = str(input('Digite o seu cpf: '))
+                    CPF(cpf)
+                        
+                    sp(0.7)
+                    st('cls')
                     while True:
                         try:
                             global idade
@@ -132,17 +163,40 @@ def projeto():
                             # if not idade.isnumeric() or idade.isspace():
                             if idade > 17:
                                 break
+                            # elif type(idade) != str or type(idade) != float:
+                            #     break
                                 # idade = int(idade)
                         except:
-                            print('Favor usar uma idade maior ou igual a 18 anos')
+                            print('Favor usar uma idade maior ou igual a 18 anos ou idade diferente de str ou float')
                         # except (TypeError, ValueError):
                         #     print('Digite uma idade inteira')
                         else:
                             print('\033[31mFavor usar uma idade maior ou igual a 18 anos\033[m')
-                    email = converte_numero(input('Digite o seu melhor email: \033[33m'))
+                    while True:
+                        global email
+                        try:
+                            email = converte_numero(input('Digite o seu melhor email: \033[33m'))
+                            print('\033[m', end='')
+                            st('cls')
+                            if len(email) > 6:
+                                break
+                        except (TypeError, ValueError):
+                            
+                            print('Digite um email maior que 6 caracteres')
+                        else:
+                            # pass
+                            print('Digite um email maior que 6 caracteres')
+                        finally:
+                            # print('Ótimo email')
+                            sp(1)
+                            st('cls')
+                            print('Continuando...')
+                            sp(1)
+                            st('cls')
                     # email = str(input('Digite o seu melhor email: \033[33m'))
                     print('\033[m', end='')
                     def menu():
+                        print()
                         print('''[1] criar uma senha: 
 [2] gerar senha: ''')
                     while True:
@@ -163,12 +217,12 @@ def projeto():
                             print('Nenhum erro')
                     st('cls')
                     if opcao == 1:
-                        senha01 = converte_numero(input('Digite uma senha de números: \033[7;30m'))
+                        senha01 = converte_numero(input('Digite uma senha: \033[7;30m'))
                         # senha01 = int(input('Digite uma senha de números: \033[7;30m'))
                         print('\033[m', end='')
                         while True:
                             try:
-                                senha02 = converte_numero(input('Digite uma senha de números: \033[7;30m'))
+                                senha02 = converte_numero(input('Digite uma senha: \033[7;30m'))
                                 print('\033[m', end='')
                                 sp(1)
                                 st('cls')
@@ -203,8 +257,8 @@ def projeto():
                                 break
 
                         print('\033[m', end='')
-                        quantidade = int(input("Digite a quantidade de caracteres que deseja ter na senha: "))
-                        pergunta_link = input("Quer digitar o link do site? sim/não: ")
+                        quantidade = converte_numero(input("Digite a quantidade de caracteres que deseja ter na senha: "))
+                        pergunta_link = converte_numero(input("Quer digitar o link do site? sim/não: "))
                         pergunta_link, link = gerador.pergunta_link(pergunta_link) # usa duas variaveis para salvar os dois valores retornados pelo return da função
                         #-------------------#
                         # GERADOR DE SENHAS #
@@ -218,9 +272,11 @@ def projeto():
             except:
                 pass
                 # print('ERRO!!!')
-            # else:
-            #     print('Conta criada com sucesso!')
-            print('Conta criada com sucesso!')
+            else:
+                print('Conta criada com sucesso!')
+            finally:
+                conta_criada += 1
+            # print('Conta criada com sucesso!')
             if criar in 'Nn':
                 break
             
@@ -276,5 +332,5 @@ def projeto():
             if resposta in 'Nn':
                 break
     continuar()
-    # print(f'Foi {qtd_acesso} contas criadas')
+    print(f'Foi {conta_criada} contas criadas')
 projeto()
