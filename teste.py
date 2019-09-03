@@ -3,6 +3,9 @@ from os import system as st
 from time import sleep as sp
 
 
+#-----------------------#
+# LOCAL VARIÁVEL GLOBAL #
+#-----------------------#
 senha = senha1 = senha01 = senha02 = acesso = conta_criada = idade = contador = 0
 nome = ' '
 usuario = ' '
@@ -14,9 +17,9 @@ cpf = ''
 email01 = ''
 
 
-#---------#
+#------------#
 # FUNÇÃO CPF #
-#---------#
+#------------#
 def CPF(cpf):
     # while True:
     # global novo_cpf
@@ -161,7 +164,6 @@ def projeto():
                 if criar in 'Ss':
                     while True:
                         global conta_criada
-                        
                         try:
                             global login
                             print('Digite um nome de usuário diferente do já criado e maior que 6 caracteres')
@@ -175,7 +177,6 @@ def projeto():
                     global email
                     global senha01
                     global senha02
-                    
                     cpf = str(input('Digite o seu cpf: \033[35m'))
                     print('\033[m', end='')
                     CPF(cpf)
@@ -209,7 +210,6 @@ def projeto():
                             if len(email) > 6 and (email != email01):
                                 break
                         except (TypeError, ValueError):
-                            
                             print('Digite um email maior que 6 caracteres e um email diferente do já criado')
                         else:
                             # pass
@@ -293,7 +293,6 @@ def projeto():
                             MENU()
                             if nome1 != usuario:
                                 break
-
                         print('\033[m', end='')
                         quantidade = converte_numero(input("Digite a quantidade de caracteres que deseja ter na senha: "))
                         pergunta_link = converte_numero(input("Quer digitar o link do site? sim/não: "))
