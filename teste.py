@@ -1,6 +1,8 @@
 from random import choice
 from os import system as st
 from time import sleep as sp
+
+
 senha = senha1 = senha01 = senha02 = acesso = conta_criada = idade = contador = 0
 nome = ' '
 usuario = ' '
@@ -9,7 +11,12 @@ login = ' '
 email = ' '
 link = ''
 cpf = ''
-# novo_cpf = ''
+email01 = ''
+
+
+#---------#
+# FUNÇÃO CPF #
+#---------#
 def CPF(cpf):
     # while True:
     # global novo_cpf
@@ -35,13 +42,17 @@ def CPF(cpf):
     while True:
         try:
             if cpf == novo_cpf:
-                print(f'CPF {cpf} válido')
+                print(f'CPF {cpf} \033[34mválido\033[m')
                 break
         except:
             print(f'CPF {cpf} inválido')
             continue
         # return CPF() 
         
+        
+#-------------------------#
+# FUNÇÃO CONVERTER NÚMERO #
+#-------------------------#        
 def converte_numero(valor):
     try:
         valor = int(valor)
@@ -62,10 +73,14 @@ def converte_numero(valor):
                     return valor
                 except (ValueError, TypeError):
                     pass
+
+
 #-------#
 # Class #
 #-------#
 class gerador():
+
+
     #---------#
     # FUNÇÕES #
     #---------#
@@ -75,6 +90,8 @@ class gerador():
         for i in range(tamanho):
             senha += choice(caracteres)
         return senha
+
+
     def pergunta_arquivo(resposta):
         global link
         while resposta != "Ss" and resposta != "nN" and resposta != "não":
@@ -101,6 +118,8 @@ class gerador():
             sair = input("Deseja sair? sim/não: ")
             while sair == "não" or sair == "nao" or sair == 'n' or sair == 'N' or sair == 'Nao' or sair == 'NAO' or sair == 'NÃO':
                 sair = input("Deseja sair? sim/não: ")
+
+
     def pergunta_link(resposta):
         global link
         link = ""
@@ -110,12 +129,20 @@ class gerador():
             link = input("Digite o link do site: ") 
         return resposta, link # retorna o valor de duas variaveis
 
+
+#------------------#
+# FUNÇÃO PRINCIPAL #
+#------------------#
 def projeto():
     '''
         projetinho, está dando certo
                     '''
     st('cls')
 
+
+    #-----------------#
+    # FUNÇÃO CADASTRO #
+    #-----------------#
     def cadastro(): # função para cadastrar o usuário
         # while True:
         while True:
@@ -149,7 +176,8 @@ def projeto():
                     global senha01
                     global senha02
                     
-                    cpf = str(input('Digite o seu cpf: '))
+                    cpf = str(input('Digite o seu cpf: \033[35m'))
+                    print('\033[m', end='')
                     CPF(cpf)
                         
                     sp(0.7)
@@ -178,11 +206,11 @@ def projeto():
                             email = converte_numero(input('Digite o seu melhor email: \033[33m'))
                             print('\033[m', end='')
                             st('cls')
-                            if len(email) > 6:
+                            if len(email) > 6 and (email != email01):
                                 break
                         except (TypeError, ValueError):
                             
-                            print('Digite um email maior que 6 caracteres')
+                            print('Digite um email maior que 6 caracteres e um email diferente do já criado')
                         else:
                             # pass
                             print('Digite um email maior que 6 caracteres')
@@ -195,6 +223,11 @@ def projeto():
                             st('cls')
                     # email = str(input('Digite o seu melhor email: \033[33m'))
                     print('\033[m', end='')
+
+
+                    #---------------#
+                    # FUNÇÕES MENUS #
+                    #---------------#
                     def menu():
                         print()
                         print('''[1] criar uma senha: 
@@ -237,6 +270,11 @@ def projeto():
                             break
                         # print('Conta criada com sucesso!')
                     elif opcao == 2:
+
+
+                        #-------------#
+                        # FUNÇÃO MENU #
+                        #-------------#
                         def MENU():
                             #--------------------#
                             # CORPO DO DOCUMENTO #
@@ -279,7 +317,11 @@ def projeto():
             # print('Conta criada com sucesso!')
             if criar in 'Nn':
                 break
-            
+
+
+    #--------------#
+    # FUNÇÃO LOGIN #
+    #--------------#
     def login (n, s):
         global nome
         global senha
@@ -310,14 +352,24 @@ def projeto():
             print('Usuário ou senha inválido')
             cadastro()
 
+
+    #-----------------------#
+    # FUNÇÃO BANCO DE DADOS #
+    #-----------------------#
     def sistema_banco_de_dados (u, s):
         global usuario
         global senha1
+        global email01
         usuario = converte_numero('estevam@sl_2019')
         # usuario = 'estevam@sl_2019'
         # senha1 =  'Respira123'
         senha1 = converte_numero('Respira123')
+        email01 = converte_numero('estevamsouzalaureth@gmail.com')
 
+
+    #------------------#
+    # FUNÇÃO CONTINUAR #
+    #------------------#
     def continuar ():
         while True:
             login(usuario, senha1)
