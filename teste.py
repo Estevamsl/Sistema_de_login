@@ -213,7 +213,7 @@ def projeto():
                             print('Digite um email maior que 6 caracteres e um email diferente do já criado')
                         else:
                             # pass
-                            print('Digite um email maior que 6 caracteres')
+                            print('Digite um email maior que 6 caracterese e um email diferente do já criado')
                         finally:
                             # print('Ótimo email')
                             sp(1)
@@ -311,6 +311,8 @@ def projeto():
                 # print('ERRO!!!')
             else:
                 print('Conta criada com sucesso!')
+                sp(1)
+                st('cls')
             finally:
                 conta_criada += 1
             # print('Conta criada com sucesso!')
