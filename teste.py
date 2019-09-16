@@ -3,6 +3,7 @@ from os import system as st
 from time import sleep as sp
 
 
+
 #-----------------------#
 # LOCAL VARIÁVEL GLOBAL #
 #-----------------------#
@@ -17,6 +18,7 @@ cpf = ''
 email01 = ''
 
 
+
 #------------#
 # FUNÇÃO CPF #
 #------------#
@@ -28,20 +30,25 @@ def CPF(cpf):
     total = 0
     reverso = 10
     
+
     for c in range(19):
         if c > 8:
             c -= 9
         total += int(novo_cpf[c]) * reverso
+
 
         reverso -= 1
         if reverso < 2:
             reverso = 11
             d = 11 - (total % 11)
 
+
             if d > 9:
                 d = 0
             total = 0
             novo_cpf += str(d)
+
+
     while True:
         try:
             if cpf == novo_cpf:
@@ -52,6 +59,7 @@ def CPF(cpf):
             continue
         # return CPF() 
         
+
         
 #-------------------------#
 # FUNÇÃO CONVERTER NÚMERO #
@@ -78,10 +86,12 @@ def converte_numero(valor):
                     pass
 
 
+
 #-------#
 # Class #
 #-------#
 class gerador():
+
 
 
     #---------#
@@ -93,6 +103,7 @@ class gerador():
         for i in range(tamanho):
             senha += choice(caracteres)
         return senha
+
 
 
     def pergunta_arquivo(resposta):
@@ -123,6 +134,7 @@ class gerador():
                 sair = input("Deseja sair? sim/não: ")
 
 
+
     def pergunta_link(resposta):
         global link
         link = ""
@@ -141,6 +153,7 @@ def projeto():
         projetinho, está dando certo
                     '''
     st('cls')
+
 
 
     #-----------------#
@@ -181,6 +194,7 @@ def projeto():
                     print('\033[m', end='')
                     CPF(cpf)
                         
+
                     sp(0.7)
                     st('cls')
                     while True:
@@ -223,6 +237,7 @@ def projeto():
                             st('cls')
                     # email = str(input('Digite o seu melhor email: \033[33m'))
                     print('\033[m', end='')
+
 
 
                     #---------------#
@@ -270,6 +285,7 @@ def projeto():
                             break
                         # print('Conta criada com sucesso!')
                     elif opcao == 2:
+
 
 
                         #-------------#
@@ -320,6 +336,7 @@ def projeto():
                 break
 
 
+
     #--------------#
     # FUNÇÃO LOGIN #
     #--------------#
@@ -352,6 +369,7 @@ def projeto():
         else:
             print('Usuário ou senha inválido')
             cadastro()
+
 
 
     #-----------------------#
