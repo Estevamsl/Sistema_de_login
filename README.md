@@ -1,3 +1,3 @@
-<<<<<<< HEAD
-	 Sistema_de_login:
-		-Sistema básico de login e senha
+	Sistema_de_login:
+		- Autor = Estevam De Souza Laureth
+		- Sistema básico de login e senha
