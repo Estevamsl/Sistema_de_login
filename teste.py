@@ -1,7 +1,16 @@
 from random import choice
 from os import system as st
 from time import sleep as sp
+import pymysql.cursors
 
+conexao = pymysql.connect(
+  host='localhost',
+  user='root',
+  password='Respirabumbum@1000',
+  database='python',
+  charset='utf8mp4',
+  cursor=pýmysql.cursors.DictCursor
+)
 
 
 #-----------------------#
