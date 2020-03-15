@@ -1,3 +1,10 @@
+# NOVA FUNCIONALIDADE EM BREVE
+
+#------------------------------#
+# CONEXÃO COM O BANCO DE DADOS #
+#------------------------------#
+
+
 #-------------------#
 # GERADOR DE SENHAS #
 #-------------------#
